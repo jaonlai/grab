@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "com.springboot.entrty.BlogProperties.name",
+      "type": "java.lang.String",
+      "description": "Description for com.springboot.entrty.BlogProperties.name."
+  }
+] }
