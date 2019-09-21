@@ -6,6 +6,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 //@NoRepositoryBean
 abstract class BaseServiceImpl<Dao extends BaseDao,T extends Serializable, ID extends Number>  implements BaseService<Dao ,T ,ID>{
@@ -15,9 +16,11 @@ abstract class BaseServiceImpl<Dao extends BaseDao,T extends Serializable, ID ex
 
     @Override
     public T findById(ID id) {
-        getDao().findById(id);
-        return null;
+        Optional<T> optional=  getDao().findById(id);
+        return (T) optional.get();
     }
+
+    public T findBy
 
 
 }

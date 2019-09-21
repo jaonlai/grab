@@ -1,5 +1,8 @@
 package com.example.springboot.service;
 
-public interface UserService extends BaseService{
+import org.springframework.stereotype.Component;
+
+@Component
+public interface UserService<UserDao,User,Long> extends BaseService{
 
 }
