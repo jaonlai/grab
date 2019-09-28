@@ -1,5 +1,12 @@
 package com.example.springboot.service;
 
-public interface UserService extends BaseService{
+import com.example.springboot.pojo.User;
 
+public interface UserService extends BaseService{
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
+    public User userLogin(User user);
 }

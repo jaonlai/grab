@@ -3,9 +3,11 @@ package com.example.springboot.pojo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Id;
+
 @Component
 public class Admins {
-
+    @Id
     private Integer id;
     @Value("${admin.name}")
     private String name;
