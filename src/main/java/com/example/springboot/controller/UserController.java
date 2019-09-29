@@ -15,6 +15,14 @@ public class UserController extends BaseController{
 
     @RequestMapping("/user/pass/login")
     public User userLogin(User user){
+
         return (User) userService.findById(2L);
     }
+
+    @RequestMapping("/user/error")
+    public User userError(User user) throws Exception {
+        throw new Exception("error");
+    }
+
+
 }
