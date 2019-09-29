@@ -15,7 +15,6 @@ public class UserController extends BaseController{
 
     @RequestMapping("/user/pass/login")
     public User userLogin(User user){
-
-        return null;
+        return (User) userService.findById(2L);
     }
 }

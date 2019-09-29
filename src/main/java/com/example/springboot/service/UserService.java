@@ -1,12 +1,8 @@
 package com.example.springboot.service;
 
-import com.example.springboot.pojo.User;
+import org.springframework.stereotype.Component;
 
-public interface UserService extends BaseService{
-    /**
-     * 用户登录
-     * @param user
-     * @return
-     */
-    public User userLogin(User user);
+@Component
+public interface UserService<UserDao,User,Long> extends BaseService{
+
 }
