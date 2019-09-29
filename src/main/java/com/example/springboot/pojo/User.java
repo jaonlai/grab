@@ -3,6 +3,7 @@ package com.example.springboot.pojo;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,6 +18,7 @@ public class User  implements Serializable {
 
 	private String account;
 
+	@NotNull(message="用户名不能为空")
 	private String name;
 
 	private String pwd;

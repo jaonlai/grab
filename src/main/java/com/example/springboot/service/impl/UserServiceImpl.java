@@ -26,4 +26,9 @@ public class UserServiceImpl<UserDao, User,Long> extends BaseServiceImpl impleme
 
         entityManager.createNamedStoredProcedureQuery("");
     }
+
+    @Override
+    public Object findUserByName(String name) {
+        return userDao.findByName(name);
+    }
 }
