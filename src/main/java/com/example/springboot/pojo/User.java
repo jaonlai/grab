@@ -10,90 +10,98 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "user")
-public class User  implements Serializable {
+public class User extends BasePojo implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+    public interface Login {
+    }
 
-	private String account;
+    public interface Create {
+    }
 
-	@NotNull(message="用户名不能为空")
-	private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	private String pwd;
+    private String account;
 
-	private String token;
+    @NotNull(message = "用户名不能为空", groups = Create.class)
+	@NotNull(message = "用户名不能为空", groups = Login.class)
+    private String name;
+    @NotNull(message = "密码不能为空", groups = Create.class)
+	@NotNull(message = "密码不能为空", groups = Login.class)
+    private String pwd;
 
-	@Column(name = "create_date")
-	private java.util.Date createDate;
+    private String token;
 
-	@Column(name = "update_date")
-	private java.util.Date updateDate;
+    @Column(name = "create_date")
+    private java.util.Date createDate;
 
-	private String slat;
+    @Column(name = "update_date")
+    private java.util.Date updateDate;
 
-	public Long getId() {
-		return id;
-	}
+    private String slat;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getAccount() {
-		return account;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setAccount(String account) {
-		this.account = account;
-	}
+    public String getAccount() {
+        return account;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPwd() {
-		return pwd;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+    public String getPwd() {
+        return pwd;
+    }
 
-	public String getToken() {
-		return token;
-	}
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
 
-	public void setToken(String token) {
-		this.token = token;
-	}
+    public String getToken() {
+        return token;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setToken(String token) {
+        this.token = token;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-	public Date getUpdateDate() {
-		return updateDate;
-	}
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
+    public Date getUpdateDate() {
+        return updateDate;
+    }
 
-	public String getSlat() {
-		return slat;
-	}
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 
-	public void setSlat(String slat) {
-		this.slat = slat;
-	}
+    public String getSlat() {
+        return slat;
+    }
+
+    public void setSlat(String slat) {
+        this.slat = slat;
+    }
 }

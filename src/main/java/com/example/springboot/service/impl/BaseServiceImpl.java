@@ -33,6 +33,23 @@ abstract class BaseServiceImpl<Dao extends BaseDao, T extends Serializable, ID e
 
         return null;
     }
+    @Override
+    public T add(T t){
+         return (T) getDao().save(t);
+    }
+    @Override
+    public T save(T t){
+        return (T) getDao().save(t);
+    }
+
+    @Override
+    public void del(ID id){
+          getDao().deleteById(id);
+    }
+
+
+
+
 
 
 }
