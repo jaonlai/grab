@@ -29,4 +29,27 @@ public interface BaseService<Dao extends BaseDao, T extends Serializable,ID exte
     */
    List<T> findBySpecification(Specification<T> spc, Pageable pageable);
 
+   /**
+    * 添加
+    * @param t
+    * @return
+    */
+   T  add(T t);
+
+   /**
+    *删除
+    * @param id
+    * @return
+    */
+   void del(ID id);
+
+   /**
+    * 更新
+    * @param t
+    * @return
+    */
+   T save(T t);
+
+
+
 }

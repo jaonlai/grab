@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @NoRepositoryBean
 public interface  BaseDao<T,ID> extends JpaRepository<T,ID>, JpaSpecificationExecutor<T> {
+
 }
