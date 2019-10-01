@@ -1,6 +1,7 @@
 package com.example.springboot.service.impl;
 
 
+import com.example.springboot.dao.UserDao;
 import com.example.springboot.pojo.User;
 import com.example.springboot.service.UserService;
 import com.example.springboot.dao.BaseDao;
@@ -12,17 +13,17 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 
 @Service("userService")
-public class UserServiceImpl<UserDao extends BaseDao, User extends Serializable, Long extends Number> extends BaseServiceImpl<UserDao, User, Long> implements UserService {
+public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> implements UserService {
 
     @Autowired
     EntityManager entityManager;
 
     @Autowired
-    com.example.springboot.dao.UserDao userDao;
+    UserDao userDao;
 
     @Override
-    public BaseDao getDao() {
-        return userDao;
+    public UserDao getDao() {
+        return (UserDao) userDao;
     }
 
     private void demo() {
@@ -31,8 +32,8 @@ public class UserServiceImpl<UserDao extends BaseDao, User extends Serializable,
     }
 
     @Override
-    public com.example.springboot.pojo.User findUserByName(String name, String pwd) throws Exception {
-        com.example.springboot.pojo.User user = userDao.findByName(name);
+    public User findUserByName(String name, String pwd) throws Exception {
+        User user = userDao.findByName(name);
         if (user == null) {
             throw new Exception("用户不存在");
         }
@@ -46,8 +47,8 @@ public class UserServiceImpl<UserDao extends BaseDao, User extends Serializable,
     }
 
     @Override
-    public com.example.springboot.pojo.User addUser(com.example.springboot.pojo.User user) {
-        return this.add(user);
+    public User addUser(User user) {
+        return  this.add(user);
     }
 
 

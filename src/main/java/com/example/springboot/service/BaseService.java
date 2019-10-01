@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import java.io.Serializable;
 import java.util.List;
 
-public interface BaseService<Dao extends BaseDao, T extends Serializable,ID extends Number> {
+public interface BaseService<T extends Serializable,ID extends Number,dao extends BaseDao<T,ID>> {
    /**
     * 根据主键查找
     * @param id
