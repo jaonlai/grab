@@ -18,6 +18,9 @@ public class User extends BasePojo implements Serializable {
     public interface Create {
     }
 
+    public interface Default {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,9 +29,11 @@ public class User extends BasePojo implements Serializable {
 
     @NotNull(message = "用户名不能为空", groups = Create.class)
 	@NotNull(message = "用户名不能为空", groups = Login.class)
+    @NotNull(message = "用户名不能为空", groups = Default.class)
     private String name;
     @NotNull(message = "密码不能为空", groups = Create.class)
 	@NotNull(message = "密码不能为空", groups = Login.class)
+    @NotNull(message = "用户名不能为空", groups = Default.class)
     private String pwd;
 
     private String token;

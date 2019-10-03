@@ -46,10 +46,6 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
         throw new Exception("密码错误");
     }
 
-    @Override
-    public User addUser(User user) {
-        return  this.add(user);
-    }
 
 
 

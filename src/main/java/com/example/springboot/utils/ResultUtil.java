@@ -1,5 +1,7 @@
 package com.example.springboot.utils;
 
+import java.awt.image.BufferedImage;
+
 public class ResultUtil {
     //执行成功
     public static ResponseDto success(Object object){
@@ -16,6 +18,7 @@ public class ResultUtil {
         result.setCode("00000");
         result.setMsg("操作失败");
         result.setData(object);
+
         return result;
     }
 }

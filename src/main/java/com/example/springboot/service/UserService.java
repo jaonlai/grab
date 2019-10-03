@@ -15,11 +15,6 @@ public interface UserService extends BaseService<User,Long, UserDao>{
      */
     public User findUserByName(String name, String pwd) throws Exception;
 
-    /**
-     * 用户注册
-     * @param user
-     * @return
-     */
-    public User addUser(User user);
+
 }
 
