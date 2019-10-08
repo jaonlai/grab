@@ -28,4 +28,51 @@ public class UserDetail  implements Serializable {
 	@Column(name = "nick_name")
 	private String nickName;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getMoney() {
+		return money;
+	}
+
+	public void setMoney(Long money) {
+		this.money = money;
+	}
+
+	public Long getUserLevel() {
+		return userLevel;
+	}
+
+	public void setUserLevel(Long userLevel) {
+		this.userLevel = userLevel;
+	}
+
+	public Long getUserPoint() {
+		return userPoint;
+	}
+
+	public void setUserPoint(Long userPoint) {
+		this.userPoint = userPoint;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 }

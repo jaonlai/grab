@@ -2,11 +2,14 @@ package com.example.springboot.service.impl;
 
 
 import com.example.springboot.dao.UserDao;
+import com.example.springboot.dao.UserDetailDao;
 import com.example.springboot.pojo.User;
+import com.example.springboot.pojo.UserDetail;
 import com.example.springboot.service.UserService;
 import com.example.springboot.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import javax.persistence.EntityManager;
@@ -20,6 +23,9 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    UserDetailDao userDetailDao;
 
     @Override
     public UserDao getDao() {
@@ -50,7 +56,16 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
         throw new Exception("密码错误");
     }
 
-
+    @Override
+    @Transactional
+    public User addUserWithTrance(User user, UserDetail userDetail) {
+        user=userDao.save(user);
+        userDetail.setUserId(user.getId());
+        userDetail.setMoney(0L);
+        userDetail.setUserPoint(0L);
+        userDetailDao.save(userDetail);
+        return null;
+    }
 
 
 }

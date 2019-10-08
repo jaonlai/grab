@@ -1,6 +1,7 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.pojo.User;
+import com.example.springboot.pojo.UserDetail;
 import com.example.springboot.pojo.UserReg;
 import com.example.springboot.service.UserService;
 import com.example.springboot.utils.Encoder;
@@ -64,7 +65,7 @@ public class UserController extends BaseController{
         User userReal = new User();
         userReal.setPwd(user.getPwd());
         userReal.setName(user.getName());
-        return userService.add(userReal);
+        return userService.addUserWithTrance(userReal,new UserDetail());
     }
 
     @RequestMapping("/pass/user/error")
