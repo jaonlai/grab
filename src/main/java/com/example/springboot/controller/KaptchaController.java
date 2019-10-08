@@ -14,6 +14,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.http.HTTPException;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/kaptcha")
+@RequestMapping("/main/kaptcha")
 public class KaptchaController extends BaseController{
     @Autowired
     DefaultKaptcha defaultKaptcha;
@@ -38,7 +39,7 @@ public class KaptchaController extends BaseController{
     }
 
     @RequestMapping("/img")
-    public void createkaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+    public void createkaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         byte[] captchaChallengeAsJpeg = null;
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
         //生产验证码字符串并保存到session中
@@ -49,6 +50,9 @@ public class KaptchaController extends BaseController{
 
         //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
         String sessionId = httpServletRequest.getParameter("sessionId");
+        if(sessionId==null){
+            throw new Exception("sessionId 不能为空");
+        }
         MySessionContext myc= MySessionContext.getInstance();
         HttpSession httpSession = myc.getSession(sessionId);
         String createText = (String) httpSession.getAttribute("vrifyCode");

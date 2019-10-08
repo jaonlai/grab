@@ -38,7 +38,11 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
             throw new Exception("用户不存在");
         }
         //密码校验
-        String coder = pwd + user.getSlat();
+
+        String coder = pwd ;
+        if(user.getSlat()!=null){
+            coder+=user.getSlat();
+        }
         String coderResult= DigestUtils.md5DigestAsHex(coder.getBytes());
         if(coderResult.equals(user.getPwd())){
             return user;
