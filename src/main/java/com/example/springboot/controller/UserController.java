@@ -53,6 +53,9 @@ public class UserController extends BaseController{
         String sessionId = httpServletRequest.getParameter("sessionId");
         MySessionContext myc= MySessionContext.getInstance();
         HttpSession httpSession = myc.getSession(sessionId);
+        if(httpSession ==null){
+            throw new Exception("验证码已过期");
+        }
         String createText = (String) httpSession.getAttribute("vrifyCode");
         System.out.println(user.getVrifyCode());
         System.out.println(createText);

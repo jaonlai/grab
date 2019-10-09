@@ -1,6 +1,7 @@
 package com.example.springboot.service.impl;
 
 import com.example.springboot.dao.BaseDao;
+import com.example.springboot.pojo.BasePojo;
 import com.example.springboot.service.BaseService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -9,11 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @NoRepositoryBean
-abstract class BaseServiceImpl<T extends Serializable, ID extends Number,Dao extends BaseDao<T,ID>> implements BaseService<T,ID,Dao> {
+abstract class BaseServiceImpl<T extends Serializable , ID extends Number,Dao extends BaseDao<T,ID>> implements BaseService<T,ID,Dao> {
 
 
     /** 实体类类型 */
@@ -50,7 +52,7 @@ abstract class BaseServiceImpl<T extends Serializable, ID extends Number,Dao ext
     }
     @Override
     public T save(T t){
-        return  getDao().save(t);
+          return  getDao().save(t);
     }
 
     @Override

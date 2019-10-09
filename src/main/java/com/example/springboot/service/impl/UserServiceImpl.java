@@ -7,6 +7,7 @@ import com.example.springboot.pojo.User;
 import com.example.springboot.pojo.UserDetail;
 import com.example.springboot.service.UserService;
 import com.example.springboot.dao.BaseDao;
+import com.example.springboot.utils.UserLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,10 +60,11 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
     @Override
     @Transactional
     public User addUserWithTrance(User user, UserDetail userDetail) {
-        user=userDao.save(user);
+        user=this.save(user);
         userDetail.setUserId(user.getId());
         userDetail.setMoney(0L);
         userDetail.setUserPoint(0L);
+        userDetail.setUserLevel((long) UserLevel.FREE_USER.getLevel());
         userDetailDao.save(userDetail);
         return null;
     }

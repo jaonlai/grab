@@ -29,4 +29,8 @@ public class MySessionContext {
         if (session_id == null) return null;
         return (HttpSession) mymap.get(session_id);
     }
+
+    public void clear(){
+        mymap.clear();
+    }
 }

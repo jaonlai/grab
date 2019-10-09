@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "user")
-public class User extends BasePojo implements Serializable {
+public class User  implements Serializable {
 
     public interface Login {
     }
@@ -46,7 +46,7 @@ public class User extends BasePojo implements Serializable {
 
     private String slat;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
