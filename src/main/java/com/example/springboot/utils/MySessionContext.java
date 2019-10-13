@@ -22,11 +22,13 @@ public class MySessionContext {
     }
     public synchronized void DelSession(HttpSession session) {
         if (session != null) {
+            System.out.println("销毁了 sessionid");
             mymap.remove(session.getId());
         }
     }
     public synchronized HttpSession getSession(String session_id) {
         if (session_id == null) return null;
+        System.out.println("创建了sessionid");
         return (HttpSession) mymap.get(session_id);
     }
 

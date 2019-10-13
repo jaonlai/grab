@@ -14,11 +14,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class GlobalExceptionHandler  {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandler.class);
     @ExceptionHandler(Exception.class) //表示让Spring捕获到所有抛出的SignException异常，并交由这个被注解的方法处理。
-    @ResponseStatus(HttpStatus.BAD_REQUEST)  //表示设置状态码。
+    @ResponseStatus(HttpStatus.OK)  //表示设置状态码。
     ResponseDto handleException(Exception e){
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
         LOGGER.error("exception:{}", e.getMessage(), e);
-        return ResultUtil.error(e.getMessage());
+        return ResultUtil.error(null,e.getMessage());
     }
 
 }

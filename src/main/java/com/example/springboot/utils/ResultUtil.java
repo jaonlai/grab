@@ -13,10 +13,13 @@ public class ResultUtil {
     }
 
     //执行失败
-    public static ResponseDto error(Object object){
+    public static ResponseDto error(Object object,String msg){
         ResponseDto result = new ResponseDto();
         result.setCode("00000");
-        result.setMsg("操作失败");
+        if(msg==null){
+            msg="操作失败";
+        }
+        result.setMsg(msg);
         result.setData(object);
 
         return result;

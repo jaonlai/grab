@@ -7,7 +7,7 @@ import org.springframework.validation.ObjectError;
 public class BaseController {
 
     protected User getUserByToken(String token){
-
+        
         return null;
     }
 

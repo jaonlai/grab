@@ -33,9 +33,22 @@ public class UserController extends BaseController{
      * @throws Exception
      */
     @RequestMapping("/pass/login")
-    public User userLogin(@Validated(value= User.Login.class) User user, BindingResult bindingResult) throws Exception {
+    public User userLogin(@Validated(value= User.Create.class) UserReg user, BindingResult bindingResult,HttpServletRequest httpServletRequest) throws Exception {
         //验证错误
         this.validException(bindingResult);
+        String sessionId = httpServletRequest.getParameter("sessionId");
+        MySessionContext myc= MySessionContext.getInstance();
+        HttpSession httpSession = myc.getSession(sessionId);
+        if(httpSession ==null){
+            throw new Exception("验证码已过期");
+        }
+        String createText = (String) httpSession.getAttribute("vrifyCode");
+        System.out.println(user.getVrifyCode());
+        System.out.println(createText);
+        if(!createText.equals(user.getVrifyCode())){
+            throw new Exception("验证码错误");
+        }
+
         return (User) userService.findUserByName(user.getName(),user.getPwd());
     }
 
