@@ -46,7 +46,7 @@ public class User  implements Serializable {
 
     private String slat;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -108,5 +108,19 @@ public class User  implements Serializable {
 
     public void setSlat(String slat) {
         this.slat = slat;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", token='" + token + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", slat='" + slat + '\'' +
+                '}';
     }
 }

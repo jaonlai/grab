@@ -7,8 +7,10 @@ import com.example.springboot.pojo.User;
 import com.example.springboot.pojo.UserDetail;
 import com.example.springboot.service.UserService;
 import com.example.springboot.dao.BaseDao;
+import com.example.springboot.utils.RedisKey;
 import com.example.springboot.utils.UserLevel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
@@ -52,6 +54,13 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
         }
         String coderResult= DigestUtils.md5DigestAsHex(coder.getBytes());
         if(coderResult.equals(user.getPwd())){
+            String token = DigestUtils.md5DigestAsHex((user.getId()+user.getName()+System.currentTimeMillis()).getBytes());
+            user.setToken(token);
+            User basicUser = new User();
+            basicUser.setId(user.getId());
+            basicUser.setName(user.getName());
+            basicUser.setToken(token);
+            redisUtils.setHash(RedisKey.USER_TOKEN.getKey(),token,basicUser,7200);
             return user;
         }
         throw new Exception("密码错误");

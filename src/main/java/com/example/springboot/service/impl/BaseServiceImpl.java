@@ -3,11 +3,13 @@ package com.example.springboot.service.impl;
 import com.example.springboot.dao.BaseDao;
 import com.example.springboot.pojo.BasePojo;
 import com.example.springboot.service.BaseService;
+import com.example.springboot.utils.RedisUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.Date;
@@ -17,6 +19,8 @@ import java.util.Optional;
 @NoRepositoryBean
 abstract class BaseServiceImpl<T extends Serializable , ID extends Number,Dao extends BaseDao<T,ID>> implements BaseService<T,ID,Dao> {
 
+    @Resource
+    protected RedisUtils redisUtils;
 
     /** 实体类类型 */
     private Class<T> clazz;

@@ -32,7 +32,7 @@ public class KaptchaController extends BaseController{
         String vrifyCode=defaultKaptcha.createText();
         Map map = new HashMap<String,String>();
         httpServletRequest.getSession().setAttribute("vrifyCode",vrifyCode);
-        map.put("seesionId",httpServletRequest.getSession().getId());
+        map.put("sessionId",httpServletRequest.getSession().getId());
         map.put("url","/main/kaptcha/img?sessionId="+httpServletRequest.getSession().getId());
         return ResultUtil.success(map);
 
