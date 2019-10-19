@@ -38,6 +38,8 @@ public class User  implements Serializable {
 
     private String token;
 
+    private String menu;
+
     @Column(name = "create_date")
     private java.util.Date createDate;
 
@@ -108,6 +110,14 @@ public class User  implements Serializable {
 
     public void setSlat(String slat) {
         this.slat = slat;
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
     }
 
     @Override

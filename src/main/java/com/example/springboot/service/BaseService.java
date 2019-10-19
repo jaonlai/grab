@@ -11,7 +11,6 @@ import java.util.List;
 public interface BaseService<T extends Serializable,ID extends Number,dao extends BaseDao<T,ID>> {
 
 
-
    /**
     * 根据主键查找
     * @param id

@@ -37,7 +37,6 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/pass/login")
     public ResponseDto userLogin(@Validated(value = User.Create.class) UserReg user, BindingResult bindingResult, HttpServletRequest httpServletRequest) throws Exception {
-
         if (!this.env.equals("dev")) {
             //验证错误
             this.validException(bindingResult);
@@ -95,9 +94,24 @@ public class UserController extends BaseController {
         return userService.addUserWithTrance(userReal, new UserDetail());
     }
 
+    /**
+     * 根据token 获取用户信息
+     * @param token
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/pass/user/token")
     public User userToken(String token) throws Exception {
        return getUserByToken(token);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Object getMenu(){
+
+        return null;
     }
 
     @RequestMapping("/pass/user/error")

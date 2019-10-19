@@ -9,6 +9,7 @@ import com.example.springboot.service.UserService;
 import com.example.springboot.dao.BaseDao;
 import com.example.springboot.utils.RedisKey;
 import com.example.springboot.utils.UserLevel;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,6 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
             throw new Exception("用户不存在");
         }
         //密码校验
-
         String coder = pwd ;
         if(user.getSlat()!=null){
             coder+=user.getSlat();
@@ -60,12 +60,19 @@ public class UserServiceImpl  extends BaseServiceImpl<User,Long,UserDao> impleme
             basicUser.setId(user.getId());
             basicUser.setName(user.getName());
             basicUser.setToken(token);
-            redisUtils.setHash(RedisKey.USER_TOKEN.getKey(),token,basicUser,7200);
+            ObjectMapper mapper = new ObjectMapper();
+            redisUtils.setStr(RedisKey.USER_TOKEN.getKey()+":"+token,mapper.writeValueAsString(basicUser),7200);
             return user;
         }
         throw new Exception("密码错误");
     }
 
+    /**
+     * 事务新增用户
+     * @param user
+     * @param userDetail
+     * @return
+     */
     @Override
     @Transactional
     public User addUserWithTrance(User user, UserDetail userDetail) {

@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@NoRepositoryBean
+
 abstract class BaseServiceImpl<T extends Serializable , ID extends Number,Dao extends BaseDao<T,ID>> implements BaseService<T,ID,Dao> {
 
     @Resource
